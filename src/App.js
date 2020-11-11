@@ -1,13 +1,22 @@
-import Hello from './Hello'
-import './App.css'
+import React from 'react';
+import Hello from './Hello';
+import Wrapper from './Wrapper';
+import Counter from './Reducer';
+import HookDefault from './hookDefault'
+import ReducerDefault from './reducerDefault'
 
 function App() {
-  const name = 'react'
-
   return (
     <>
-      <Hello name="react" color="red"/>
-      <div>{name}</div>
+      <Wrapper>
+        <Hello name="template" color="black" isSpecial={true}/>
+        <Hello color="pink"/>
+      </Wrapper>
+      <Counter />
+      <br/>
+      <HookDefault />
+      <br/>
+      <ReducerDefault />
     </>
   );
 }
