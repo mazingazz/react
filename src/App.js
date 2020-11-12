@@ -6,6 +6,11 @@ import ReducerDefault from './reducerDefault'
 import ApiTest from './api'
 import Profiles from './router/Profiles';
 import HistorySample from './router/HistorySample';
+import CounterContainer from './containers/CounterContainer';
+import TodosContainer from './containers/TodosContainer';
+import PostListPage from './pages/PostListPage';
+import PostPage from './pages/PostPage';
+import './lib/libtest'
 
 function App() {
   return (
@@ -29,7 +34,16 @@ function App() {
           <Link to="/profiles">Profile</Link>
         </li>
         <li>
-          <Link to="/history">예제</Link>
+          <Link to="/history">history</Link>
+        </li>
+        <li>
+          <Link to="/reduxcounter">redux-counter</Link>
+        </li>
+        <li>
+          <Link to="/reduxtodo">redux-todo</Link>
+        </li>
+        <li>
+          <Link to="/posts">redux-thunk-post</Link>
         </li>
       </ul>
       <Switch>
@@ -39,6 +53,10 @@ function App() {
         <Route path="/apiTest" component={ApiTest} />
         <Route path="/profiles/" component={Profiles} />
         <Route path="/history" component={HistorySample} />
+        <Route path="/reduxcounter" component={CounterContainer} />
+        <Route path="/reduxtodo" component={TodosContainer} />
+        <Route path="/posts/" component={PostListPage} exact={true} />
+        <Route path="/posts/:id" component={PostPage} />
         <Route
           // path 를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (

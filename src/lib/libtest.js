@@ -1,3 +1,4 @@
-window.currentUser = {
-    name: "John"
-  };
+const currentUser= {
+  name: "John"
+}
+window.user = currentUser
