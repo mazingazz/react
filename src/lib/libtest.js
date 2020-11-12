@@ -1,0 +1,3 @@
+window.currentUser = {
+    name: "John"
+  };
