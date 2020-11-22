@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, Link, NavLink } from 'react-router-dom';
 import Counter from './simple/Counter';
 import HookDefault from './hookDefault'
@@ -10,9 +10,22 @@ import CounterContainer from './containers/CounterContainer';
 import TodosContainer from './containers/TodosContainer';
 import PostListPage from './pages/PostListPage';
 import PostPage from './pages/PostPage';
+import Protected from './pages/Protected';
+import GuardedRoute from './pages/GuardedRoute';
 import './lib/libtest'
 
 function App() {
+  const[isAutheticated, setisAutheticated] = useState(false);
+
+  function login(){
+    setisAutheticated(true);
+    console.log("loggedInUser:" + isAutheticated)
+  }
+
+  function logout(){
+    setisAutheticated(false);
+    console.log("loggedInUser:" + isAutheticated)
+  }
   return (
     <>
       <ul>
@@ -45,7 +58,13 @@ function App() {
         <li>
           <Link to="/posts">redux-thunk-post</Link>
         </li>
+        <li>
+          <Link to='/protected'>Link to Protected Page</Link>
+        </li>
       </ul>
+      <button onClick={login}>Login</button>
+      <br/>
+      <button onClick={logout}>Logout</button>
       <Switch>
         <Route path="/" exact={true} component={Counter} />
         <Route path="/hookDefault" component={HookDefault} />
@@ -57,6 +76,7 @@ function App() {
         <Route path="/reduxtodo" component={TodosContainer} />
         <Route path="/posts/" component={PostListPage} exact={true} />
         <Route path="/posts/:id" component={PostPage} />
+        <GuardedRoute path='/protected' component={Protected} auth={isAutheticated} />
         <Route
           // path 를 따로 정의하지 않으면 모든 상황에 렌더링됨
           render={({ location }) => (
